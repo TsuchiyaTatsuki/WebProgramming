@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +15,7 @@
 <span class="d-block p-2 bg-dark text-white">
 <div class="d-flex flex-row-reverse">
   <div class="p-2"><h4><a href="file:///C:/Users/USER/Documents/WebProgramming/Mock/login.html" class="text-danger">ログアウト</a></h4></div>
-  <div class="p-2"><h4>ユーザー名</h4></div>
+  <div class="p-2"><h4>${userInfo.name} さん</h4></div>
 </div>
 </span>
 <!-- メニュー -->
@@ -24,7 +28,7 @@
 <br>
 
 
-<div align="right"><h5><a href="file:///C:/Users/USER/Documents/WebProgramming/Mock/newUser.html" class="text-primary">新規登録</a></h5></div>
+<div align="right"><h5><a href="NewUserServlet" class="text-primary">新規登録</a></h5></div>
 
 <!-- 入力フォーム -->
 <form>
@@ -72,24 +76,19 @@
     </tr>
   </thead>
   <tbody>
+  <c:forEach var="user" items="${userList}" >
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="file:///C:/Users/USER/Documents/WebProgramming/Mock/userMore.html"><button type="button" class="btn btn-outline-primary btn-sm">　詳細　</button></a><a href="file:///C:/Users/USER/Documents/WebProgramming/Mock/userUpdate.html"><button type="button" class="btn btn-outline-success btn-sm">　更新　</button></a><a href="file:///C:/Users/USER/Documents/WebProgramming/Mock/userDelete.html"><button type="button" class="btn btn-outline-danger btn-sm">　削除　</button><a></a></td>
+      <td>${user.loginId}</td>
+      <td>${user.name}</td>
+      <td>${user.birthDate}</td>
+      <td>
+      	<a href="file:///C:/Users/USER/Documents/WebProgramming/Mock/userMore.html"><button type="button" class="btn btn-outline-primary btn-sm">　詳細　</button></a>
+      	<a href="file:///C:/Users/USER/Documents/WebProgramming/Mock/userUpdate.html"><button type="button" class="btn btn-outline-success btn-sm">　更新　</button></a>
+      	<a href="file:///C:/Users/USER/Documents/WebProgramming/Mock/userDelete.html"><button type="button" class="btn btn-outline-danger btn-sm">　削除　</button><a></a>
+      </td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td><a href="file:///C:/Users/USER/Documents/WebProgramming/Mock/userMore.html"><button type="button" class="btn btn-outline-primary btn-sm">　詳細　</button></a><a href="file:///C:/Users/USER/Documents/WebProgramming/Mock/userUpdate.html"><button type="button" class="btn btn-outline-success btn-sm">　更新　</button></a><a href="file:///C:/Users/USER/Documents/WebProgramming/Mock/userDelete.html"><button type="button" class="btn btn-outline-danger btn-sm">　削除　</button><a></a></td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td><a href="file:///C:/Users/USER/Documents/WebProgramming/Mock/userMore.html"><button type="button" class="btn btn-outline-primary btn-sm">　詳細　</button></a><a href="file:///C:/Users/USER/Documents/WebProgramming/Mock/userUpdate.html"><button type="button" class="btn btn-outline-success btn-sm">　更新　</button></a><a href="file:///C:/Users/USER/Documents/WebProgramming/Mock/userDelete.html"><button type="button" class="btn btn-outline-danger btn-sm">　削除　</button><a></a></td>
-    </tr>
+    </c:forEach>
+
   </tbody>
 </table>
 <!-- テーブル -->
