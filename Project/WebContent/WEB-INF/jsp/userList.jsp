@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ユーザー一覧</title>
+<title>ユーザ一覧</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
 <!-- メニュー -->
 <span class="d-block p-2 bg-dark text-white">
 <div class="d-flex flex-row-reverse">
-  <div class="p-2"><h4><a href="file:///C:/Users/USER/Documents/WebProgramming/Mock/login.html" class="text-danger">ログアウト</a></h4></div>
+  <div class="p-2"><h4><a href="LogoutServlet" class="text-danger">ログアウト</a></h4></div>
   <div class="p-2"><h4>${userInfo.name} さん</h4></div>
 </div>
 </span>
@@ -82,9 +82,9 @@
       <td>${user.name}</td>
       <td>${user.birthDate}</td>
       <td>
-      	<a href="file:///C:/Users/USER/Documents/WebProgramming/Mock/userMore.html"><button type="button" class="btn btn-outline-primary btn-sm">　詳細　</button></a>
-      	<a href="file:///C:/Users/USER/Documents/WebProgramming/Mock/userUpdate.html"><button type="button" class="btn btn-outline-success btn-sm">　更新　</button></a>
-      	<a href="file:///C:/Users/USER/Documents/WebProgramming/Mock/userDelete.html"><button type="button" class="btn btn-outline-danger btn-sm">　削除　</button><a></a>
+      	<a href="UserMoreServlet?id=${user.id}"><button type="button" class="btn btn-outline-primary btn-sm">　詳細　</button></a>
+      	<a href="UserUpdateServlet?id=${user.id}"><button type="button" class="btn btn-outline-success btn-sm">　更新　</button></a>
+      	<a href="UserDeleteServlet?id=${user.id}"><button type="button" class="btn btn-outline-danger btn-sm">　削除　</button></a>
       </td>
     </tr>
     </c:forEach>

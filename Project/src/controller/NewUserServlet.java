@@ -1,3 +1,4 @@
+package controller;
 
 
 import java.io.IOException;
@@ -33,6 +34,8 @@ public class NewUserServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/newUser.jsp");
 		dispatcher.forward(request, response);
 
@@ -44,20 +47,33 @@ public class NewUserServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		request.setCharacterEncoding("UTF-8");
+
 		Date date = new Date();
-        SimpleDateFormat f = new SimpleDateFormat("yyyy年MM月dd日 kk:mm");
-        String dateStr = f.format(date);
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
+        String createDate = f.format(date);
 
 		String loginId = request.getParameter("loginId");
 		String password = request.getParameter("password");
 		String passwordb = request.getParameter("passwordb");
 		String name = request.getParameter("name");
 		String birthDate = request.getParameter("birthDate");
-		String createDate = request.getParameter("dateStr");
 
 
 
 		UserDao userDao = new UserDao();
+		boolean result = userDao.newUser(loginId, password, passwordb, name, birthDate, createDate);
+
+		if(!result) {
+			request.setAttribute("errMsg", "登録に失敗しました");
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/newUser.jsp");
+			dispatcher.forward(request, response);
+			return;
+
+		}
+
+		response.sendRedirect("UserListServlet");
 
 	}
 

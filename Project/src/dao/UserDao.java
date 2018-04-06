@@ -75,6 +75,8 @@ public class UserDao {
                 User user = new User(id, loginId, name, birthDate, password, createDate, updateDate);
 
                 userList.add(user);
+
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -94,9 +96,50 @@ public class UserDao {
         return userList;
 	}
 
-	public User newUser(String loginId, String password, String name, String birthDate, String createDate) {
+	public boolean newUser(String loginId, String password, String passwordb, String name, String birthDate, String createDate) {
+		Connection conn = null;
 
-		return;
+
+		try {
+			conn = DBManager.getConnection();
+
+			if (password.equals(passwordb)) {
+
+				String sql = "insert into user (login_id, name, birth_date, password, create_date, update_date) values(?, ?, ?, ?, ?, ?)";
+
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+				pStmt.setString(1, loginId);
+	            pStmt.setString(2, name);
+	            pStmt.setString(3, birthDate);
+	            pStmt.setString(4, password);
+	            pStmt.setString(5, createDate);
+	            pStmt.setString(6, createDate);
+				pStmt.executeUpdate();
+
+	            return true;
+
+			}else {
+				return false;
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+
+		} finally {
+			// データベース切断
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    return false;
+                }
+            }
+
+		}
+
 	}
 
 }

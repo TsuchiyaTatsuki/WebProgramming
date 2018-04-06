@@ -16,16 +16,21 @@
 		<div class="d-flex flex-row-reverse">
 			<div class="p-2">
 				<h4>
-					<a href="file:///C:/Users/USER/Documents/WebProgramming/Mock/login.html"
-						class="text-danger">ログアウト</a>
+					<a href="LogoutServlet" class="text-danger">ログアウト</a>
 				</h4>
 			</div>
 			<div class="p-2">
-				<h4>ユーザー名</h4>
+				<h4>${userInfo.name} さん</h4>
 			</div>
 		</div>
 	</span>
 	<!-- メニュー -->
+
+	<c:if test="${errMsg != null}" >
+	    <div class="alert alert-danger" role="alert">
+		  ${errMsg}
+		</div>
+	</c:if>
 
 
 	<br>
@@ -40,7 +45,7 @@
 			<br>
 
 			<!-- 入力フォーム -->
-			<form action="LoginServlet" method="post">
+			<form action="NewUserServlet" method="post">
 				<div class="form-group row">
 					<label for="colFormLabelLg"
 						class="col-sm-5 col-form-label col-form-label-lg">ログインID</label>

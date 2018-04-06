@@ -1,3 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="controller.UserMoreServlet" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,8 +16,8 @@
 <!-- メニュー -->
 <span class="d-block p-2 bg-dark text-white">
 <div class="d-flex flex-row-reverse">
-  <div class="p-2"><h4><a href="file:///C:/Users/USER/Documents/WebProgramming/Mock/login.html" class="text-danger">ログアウト</a></h4></div>
-  <div class="p-2"><h4>ユーザー名</h4></div>
+  <div class="p-2"><h4><a href="LogoutServlet" class="text-danger">ログアウト</a></h4></div>
+  <div class="p-2"><h4>${userInfo.name} さん</h4></div>
 </div>
 </span>
 <!-- メニュー -->
@@ -30,31 +36,31 @@
   <div class="form-group row">
     <label for="staticEmail" class="col-sm-5 col-form-label col-form-label-lg">ログインID</label>
     <div class="col-sm-7">
-      <input type="text" readonly class="form-control-plaintext form-control-lg" id="staticEmail" value="id0001">
+      <input type="text" readonly class="form-control-plaintext form-control-lg" id="loginId" value="${userList[id - 1].loginId}">
     </div>
   </div>
   <div class="form-group row">
     <label for="staticEmail" class="col-sm-5 col-form-label col-form-label-lg">ユーザ名</label>
     <div class="col-sm-7">
-      <input type="text" readonly class="form-control-plaintext form-control-lg" id="staticEmail" value="田中太郎">
+      <input type="text" readonly class="form-control-plaintext form-control-lg" id="name" value="${userList[id - 1].name }">
     </div>
   </div>
   <div class="form-group row">
     <label for="staticEmail" class="col-sm-5 col-form-label col-form-label-lg">生年月日</label>
     <div class="col-sm-7">
-      <input type="text" readonly class="form-control-plaintext form-control-lg" id="staticEmail" value="1989年04月26日">
+      <input type="text" readonly class="form-control-plaintext form-control-lg" id="birthDate" value="${userList[id - 1].birthDate }">
     </div>
   </div>
   <div class="form-group row">
     <label for="staticEmail" class="col-sm-5 col-form-label col-form-label-lg">登録日時</label>
     <div class="col-sm-7">
-      <input type="text" readonly class="form-control-plaintext form-control-lg" id="staticEmail" value="2017年01月01日 10:50">
+      <input type="text" readonly class="form-control-plaintext form-control-lg" id="createDate" value="${userList[id - 1].createDate }">
     </div>
   </div>
   <div class="form-group row">
     <label for="staticEmail" class="col-sm-5 col-form-label col-form-label-lg">更新日時</label>
     <div class="col-sm-7">
-      <input type="text" readonly class="form-control-plaintext form-control-lg" id="staticEmail" value="2017年02月01日 01:05">
+      <input type="text" readonly class="form-control-plaintext form-control-lg" id="updateDate" value="${userList[id - 1].updateDate }">
     </div>
   </div>
 </form>

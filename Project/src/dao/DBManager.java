@@ -8,7 +8,7 @@ public class DBManager {
     private static String url = "jdbc:mysql://localhost/";
     private static String user = "root";
     private static String pass = "password";
-    private static String db_name = "kinudouhu";
+    private static String db_name = "kinudouhu?useUnicode=true&characterEncoding=utf8";
 
     /**
      * DBへ接続するコネクションを返す
