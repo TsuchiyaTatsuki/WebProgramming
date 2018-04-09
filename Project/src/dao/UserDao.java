@@ -161,7 +161,6 @@ public class UserDao {
 				sql += " and birth_date between '" + date1 + "' and '" + date2 + "'";
 			}
 
-
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 
