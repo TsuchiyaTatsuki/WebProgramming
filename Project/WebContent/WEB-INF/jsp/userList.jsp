@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="controller.UserUpdateServlet" %>
 
 
 <!DOCTYPE html>
@@ -31,34 +32,35 @@
 <div align="right"><h5><a href="NewUserServlet" class="text-primary">新規登録</a></h5></div>
 
 <!-- 入力フォーム -->
-<form>
+<form action="FindSearchServlet" method="post">
   <div class="form-group row">
-    <label for="staticEmail" class="col-sm-5 col-form-label"><h3><strong>ログインID</strong></h3></label>
-    <div class="col-sm-7">
-      <input type="text" class="form-control form-control-lg" id="formGroupExampleInput" placeholder="ID">
+    <label for="staticEmail" class="col-sm-3 col-form-label"><h3><strong>ログインID</strong></h3></label>
+    <div class="col-sm-9">
+      <input name="loginId" type="text" class="form-control form-control-lg" id="loginId" placeholder="ID">
     </div>
   </div>
   <br>
   <div class="form-group row">
-    <label for="inputPassword" class="col-sm-5 col-form-label"><h3><strong>パスワード</strong></h3></label>
-    <div class="col-sm-7">
-      <input type="text" class="form-control form-control-lg" id="formGroupExampleInput" placeholder="Password">
+    <label for="inputPassword" class="col-sm-3 col-form-label"><h3><strong>ユーザ名</strong></h3></label>
+    <div class="col-sm-9">
+      <input name="name" type="text" class="form-control form-control-lg" id="name" placeholder="name">
     </div>
     </div>
     <br>
   <div class="form-group row">
-    <label for="staticEmail" class="col-sm-5 col-form-label"><h3><strong>生年月日</strong></h3></label>
-    <div class="col">
-   	  <input type="text" class="form-control form-control-lg" placeholder="年/月/日">
+    <label for="staticEmail" class="col-sm-3 col-form-label"><h3><strong>生年月日</strong></h3></label>
+    <div class="col col-sm-4">
+   	  <input name="date1" type="date" class="form-control form-control-lg" placeholder="年/月/日">
     </div>
-    <label for="staticEmail" class="col-sm-2 col-form-label"><h3><strong>　 ～</strong></h3></label>
-    <div class="col">
-      <input type="text" class="form-control form-control-lg" placeholder="年/月/日">
+    <label for="staticEmail" class="col col-form-label"><h3><strong>～</strong></h3></label>
+    <div class="col col-sm-4">
+      <input name="date2" type="date" class="form-control form-control-lg" placeholder="年/月/日">
     </div>
   </div>
+  <div align="right"><button type="submit" class="btn btn-outline-secondary btn-lg"><strong>　　検索　　</strong></button></div>
 </form>
 
-<div align="right"><button type="button" class="btn btn-outline-secondary btn-lg"><strong>　　検索　　</strong></button></div>
+
 <!-- 入力フォーム -->
 
 <!-- 区切り -->
@@ -76,6 +78,8 @@
     </tr>
   </thead>
   <tbody>
+
+<c:if test="${userInfo.loginId == 'admin'}">
   <c:forEach var="user" items="${userList}" >
     <tr>
       <td>${user.loginId}</td>
@@ -88,6 +92,24 @@
       </td>
     </tr>
     </c:forEach>
+</c:if>
+
+<c:if test="${userInfo.loginId != 'admin'}">
+  <c:forEach var="user" items="${userList}" >
+    <tr>
+      <td>${user.loginId}</td>
+      <td>${user.name}</td>
+      <td>${user.birthDate}</td>
+      <td>
+      	<a href="UserMoreServlet?id=${user.id}"><button type="button" class="btn btn-outline-primary btn-sm">　詳細　</button></a>
+      	<c:if test="${user.loginId == userInfo.loginId}">
+      	<a href="UserUpdateServlet?id=${user.id}"><button type="button" class="btn btn-outline-success btn-sm">　更新　</button></a>
+      	</c:if>
+      </td>
+    </tr>
+    </c:forEach>
+
+</c:if>
 
   </tbody>
 </table>

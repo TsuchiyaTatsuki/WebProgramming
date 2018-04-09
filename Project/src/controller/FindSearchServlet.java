@@ -1,7 +1,7 @@
 package controller;
 
-
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,16 +14,16 @@ import dao.UserDao;
 import model.User;
 
 /**
- * Servlet implementation class UserMoreServlet
+ * Servlet implementation class FindSearchServlet
  */
-@WebServlet("/UserMoreServlet")
-public class UserMoreServlet extends HttpServlet {
+@WebServlet("/FindSearchServlet")
+public class FindSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserMoreServlet() {
+    public FindSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,17 +33,18 @@ public class UserMoreServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8");
 
-		String userId = request.getParameter("id");
+		String loginId = request.getParameter("loginId");
+		String name = request.getParameter("name");
+		String date1 = request.getParameter("date1");
+		String date2 = request.getParameter("date2");
 
 		UserDao userDao = new UserDao();
-		User user = userDao.findUser(userId);
+		List<User> userList = userDao.findSearch(loginId, name, date1, date2);
 
-		request.setAttribute("user", user);
+		request.setAttribute("userList", userList);
 
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userMore.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userList.jsp");
 		dispatcher.forward(request, response);
 
 	}
@@ -53,7 +54,6 @@ public class UserMoreServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
 
 	}
 

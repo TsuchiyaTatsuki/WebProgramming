@@ -82,7 +82,7 @@
 					<label for="colFormLabelLg"
 						class="col-sm-5 col-form-label col-form-label-lg">生年月日</label>
 					<div class="col-sm-7">
-						<input type="text" class="form-control form-control-lg"
+						<input type="date" class="form-control form-control-lg"
 							id="colFormLabelLg" name="birthDate" placeholder="生年月日">
 					</div>
 				</div>

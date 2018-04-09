@@ -1,6 +1,5 @@
 package controller;
 
-
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -14,16 +13,16 @@ import dao.UserDao;
 import model.User;
 
 /**
- * Servlet implementation class UserMoreServlet
+ * Servlet implementation class UserDeleteServlet
  */
-@WebServlet("/UserMoreServlet")
-public class UserMoreServlet extends HttpServlet {
+@WebServlet("/UserDeleteServlet")
+public class UserDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserMoreServlet() {
+    public UserDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,8 +42,9 @@ public class UserMoreServlet extends HttpServlet {
 		request.setAttribute("user", user);
 
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userMore.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userDelete.jsp");
 		dispatcher.forward(request, response);
+
 
 	}
 
@@ -53,6 +53,23 @@ public class UserMoreServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+
+		String userid = request.getParameter("id");
+
+		UserDao userDao = new UserDao();
+		boolean result = userDao.userDelete(userid);
+
+		if(!result) {
+			request.setAttribute("errMsg", "入力された内容は正しくありません");
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userDelete.jsp");
+			dispatcher.forward(request, response);
+			return;
+
+		}
+
+		response.sendRedirect("UserListServlet");
 
 
 	}

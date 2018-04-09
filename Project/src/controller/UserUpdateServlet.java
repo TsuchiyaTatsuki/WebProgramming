@@ -1,7 +1,8 @@
 package controller;
 
-
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,16 +15,16 @@ import dao.UserDao;
 import model.User;
 
 /**
- * Servlet implementation class UserMoreServlet
+ * Servlet implementation class UserUpdateServlet
  */
-@WebServlet("/UserMoreServlet")
-public class UserMoreServlet extends HttpServlet {
+@WebServlet("/UserUpdateServlet")
+public class UserUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserMoreServlet() {
+    public UserUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,7 +44,7 @@ public class UserMoreServlet extends HttpServlet {
 		request.setAttribute("user", user);
 
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userMore.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userUpdate.jsp");
 		dispatcher.forward(request, response);
 
 	}
@@ -53,7 +54,32 @@ public class UserMoreServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
 
+		String id = request.getParameter("id");
+
+		Date date = new Date();
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
+        String updateDate = f.format(date);
+
+        String password = request.getParameter("password");
+		String passwordb = request.getParameter("passwordb");
+		String name = request.getParameter("name");
+		String birthDate = request.getParameter("birthDate");
+
+		UserDao userDao = new UserDao();
+		boolean result = userDao.userUpdate(id, password, passwordb, name, birthDate, updateDate);
+
+		if(!result) {
+			request.setAttribute("errMsg", "入力された内容は正しくありません");
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userUpdate.jsp");
+			dispatcher.forward(request, response);
+			return;
+
+		}
+
+		response.sendRedirect("UserListServlet");
 
 	}
 

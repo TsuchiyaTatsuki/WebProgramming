@@ -36,31 +36,31 @@
   <div class="form-group row">
     <label for="staticEmail" class="col-sm-5 col-form-label col-form-label-lg">ログインID</label>
     <div class="col-sm-7">
-      <input type="text" readonly class="form-control-plaintext form-control-lg" id="loginId" value="${userList[id - 1].loginId}">
+      <input type="text" readonly class="form-control-plaintext form-control-lg" id="loginId" value="${user.loginId}">
     </div>
   </div>
   <div class="form-group row">
     <label for="staticEmail" class="col-sm-5 col-form-label col-form-label-lg">ユーザ名</label>
     <div class="col-sm-7">
-      <input type="text" readonly class="form-control-plaintext form-control-lg" id="name" value="${userList[id - 1].name }">
+      <input type="text" readonly class="form-control-plaintext form-control-lg" id="name" value="${user.name }">
     </div>
   </div>
   <div class="form-group row">
     <label for="staticEmail" class="col-sm-5 col-form-label col-form-label-lg">生年月日</label>
     <div class="col-sm-7">
-      <input type="text" readonly class="form-control-plaintext form-control-lg" id="birthDate" value="${userList[id - 1].birthDate }">
+      <input type="text" readonly class="form-control-plaintext form-control-lg" id="birthDate" value="${user.birthDate }">
     </div>
   </div>
   <div class="form-group row">
     <label for="staticEmail" class="col-sm-5 col-form-label col-form-label-lg">登録日時</label>
     <div class="col-sm-7">
-      <input type="text" readonly class="form-control-plaintext form-control-lg" id="createDate" value="${userList[id - 1].createDate }">
+      <input type="text" readonly class="form-control-plaintext form-control-lg" id="createDate" value="${user.createDate }">
     </div>
   </div>
   <div class="form-group row">
     <label for="staticEmail" class="col-sm-5 col-form-label col-form-label-lg">更新日時</label>
     <div class="col-sm-7">
-      <input type="text" readonly class="form-control-plaintext form-control-lg" id="updateDate" value="${userList[id - 1].updateDate }">
+      <input type="text" readonly class="form-control-plaintext form-control-lg" id="updateDate" value="${user.updateDate }">
     </div>
   </div>
 </form>

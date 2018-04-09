@@ -53,19 +53,19 @@ public class NewUserServlet extends HttpServlet {
         SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
         String createDate = f.format(date);
 
-		String loginId = request.getParameter("loginId");
+
+        String loginId = request.getParameter("loginId");
 		String password = request.getParameter("password");
 		String passwordb = request.getParameter("passwordb");
 		String name = request.getParameter("name");
 		String birthDate = request.getParameter("birthDate");
 
 
-
 		UserDao userDao = new UserDao();
 		boolean result = userDao.newUser(loginId, password, passwordb, name, birthDate, createDate);
 
 		if(!result) {
-			request.setAttribute("errMsg", "登録に失敗しました");
+			request.setAttribute("errMsg", "入力された内容は正しくありません");
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/newUser.jsp");
 			dispatcher.forward(request, response);
